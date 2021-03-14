@@ -73,6 +73,8 @@
         .db 5, 3, 5, 5, 2
       dice_11666:
         .db 1, 1, 6, 6, 6
+      dice_61666:
+        .db 6, 1, 6, 6, 6
     +:
     ; -------------------------------------------------------------------------
     ld hl,dice_11122
@@ -99,6 +101,12 @@
     call score_three_of_a_kind
     cp 20
     jp nz,exit_with_failure
+
+    ld hl,dice_61666
+    call score_three_of_a_kind
+    cp 25
+    jp nz,exit_with_failure
+
 
     jp exit_with_succes
     ; -------------------------------------------------------------------------

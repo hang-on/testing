@@ -3,7 +3,7 @@
 
 .section "Yahtzee library" free
   score_three_of_a_kind:
-    call have_three_of_a_kind
+    call have_at_least_three_of_a_kind
     cp TRUE
     jp z,return_sum
   return_zero:
@@ -13,20 +13,17 @@
     call sum_of_dice
   ret
 
-  have_three_of_a_kind:
+  have_at_least_three_of_a_kind:
     push hl
     pop ix
     ld c,1
-    ld b,6
-    -:
-      push bc
-        call count_faces
-      pop bc
+    .rept 6
+      call count_faces
       cp 3
-      jp z, return_true
+      jp nc, return_true
       inc c
-    djnz -
-
+    .endr
+    
     return_false:
       ld a,FALSE
     ret
@@ -37,7 +34,9 @@
   ret
 
   count_faces:
-    ; Count number of faces in 5 dice. C = face value 1-6.
+    ; Count the number of a given face in 5 dice.
+    ; Entry: C = face value 1-6.
+    ; Exit: A = number of the given face.
     ld d,0
     ld a,(ix+0)
     cp c

@@ -138,6 +138,14 @@
     jp nz,-
   ret
 
+  set_border_color:
+    ; Entry: A = Palette index.
+    out (CONTROL_PORT),a
+    ld a,REGISTER_WRITE_COMMAND
+    or 7 ; Border color register.
+    out (CONTROL_PORT),a
+  ret
+
   setup_vram_write:
     ; Entry: HL = Address in VRAM.
     ld a,l

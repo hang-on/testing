@@ -1,4 +1,5 @@
 .include "stdlib.asm"
+.include "yahtzee.asm"
 .memorymap
   defaultslot 0
   slotsize $4000
@@ -55,13 +56,51 @@
     ld b,3
     ld hl,yellow_red_green
     call load_cram
+    jp +
+      yellow_red_green:
+      .db $2f $17 $1c
+      .equ YELLOW 0
+      .equ RED 1
+      .equ GREEN 2
+    
+      dice_11122:
+        .db 1, 1, 1, 2, 2
+      dice_11134:
+        .db 1, 1, 1, 3, 4
+    +:
+    ; -------------------------------------------------------------------------
+    ld hl,dice_11122
+    call score_three_of_a_kind
+    cp 7
+    jp nz,exit_with_failure
 
+    ld hl,dice_11134
+    call score_three_of_a_kind
+    cp 10
+    jp nz,exit_with_failure
+
+
+    jp exit_with_succes
+    ; -------------------------------------------------------------------------
     ei
     halt
     halt
   jp main_loop
-    yellow_red_green:
-    .db $2f $17 $1c
+
+  exit_with_failure:
+    ld a,RED
+    call set_border_color
+  -:
+    nop
+  jp -
+
+  exit_with_succes:
+    ld a,GREEN
+    call set_border_color
+  -:
+    nop
+  jp -
+
 
   main_loop:
     nop

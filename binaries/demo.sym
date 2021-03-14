@@ -8,5 +8,6 @@
 0000:009d setup_vram_write
 0000:0000 boot
 0000:0024 initial_memory_control_register_values
-0000:0028 init
-0000:002e main_loop
+0000:003f init
+0000:004f yellow_red_green
+0000:0052 main_loop

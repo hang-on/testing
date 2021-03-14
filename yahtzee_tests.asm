@@ -1,4 +1,3 @@
-.include "sms_constants.asm"
 .include "stdlib.asm"
 .memorymap
   defaultslot 0
@@ -51,11 +50,18 @@
 
 .section "main" free
   init:
-  ; Run this function once (on game load/reset). 
+  ; Run this function once (on game load/reset).
+    ld a,16
+    ld b,3
+    ld hl,yellow_red_green
+    call load_cram
+
     ei
     halt
     halt
   jp main_loop
+    yellow_red_green:
+    .db $2f $17 $1c
 
   main_loop:
     nop

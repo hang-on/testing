@@ -20,10 +20,10 @@
     ld b,6
     -:
       push bc
-        call count_dice
-        cp 3
-        jp z, return_true
+        call count_faces
       pop bc
+      cp 3
+      jp z, return_true
       inc c
     djnz -
 
@@ -32,12 +32,12 @@
     ret
 
     return_true:
-      pop bc
       ld a,TRUE
     ret
   ret
 
-  count_dice:
+  count_faces:
+    ; Count number of faces in 5 dice. C = face value 1-6.
     ld d,0
     ld a,(ix+0)
     cp c

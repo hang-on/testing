@@ -1,0 +1,12 @@
+; this file was created with wlalink by ville helin <vhelin@iki.fi>.
+; wla symbolic information for "binaries\demo.sms".
+
+[labels]
+0000:0069 clear_vram
+0000:007d load_cram
+0000:008a load_vram
+0000:009d setup_vram_write
+0000:0000 boot
+0000:0024 initial_memory_control_register_values
+0000:0028 init
+0000:002e main_loop

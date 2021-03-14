@@ -14,9 +14,9 @@
   banksize $4000
   banks 8
 .endro
+
 .org 0
 .bank 0 slot 0
-
 .section "Boot" force
   boot:
     di

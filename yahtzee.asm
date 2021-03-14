@@ -15,8 +15,9 @@
 
   have_three_of_a_kind:
     push hl
+    pop ix
     ld c,1
-    ld b,5
+    ld b,6
     -:
       push bc
         call count_dice
@@ -24,33 +25,45 @@
         jp z, return_true
       pop bc
       inc c
-      pop hl
-      push hl
     djnz -
 
     return_false:
-      pop hl
       ld a,FALSE
     ret
 
     return_true:
       pop bc
-      pop hl
       ld a,TRUE
     ret
   ret
 
   count_dice:
-    ld b,5
     ld d,0
-    -:
-      ld a,(hl)
-      cp c
-      jp nz, +
-        inc d
-      +:
-      inc hl
-    djnz -
+    ld a,(ix+0)
+    cp c
+    jp nz, +
+      inc d
+    +:
+    ld a,(ix+1)
+    cp c
+    jp nz, +
+      inc d
+    +:
+    ld a,(ix+2)
+    cp c
+    jp nz, +
+      inc d
+    +:
+    ld a,(ix+3)
+    cp c
+    jp nz, +
+      inc d
+    +:
+    ld a,(ix+4)
+    cp c
+    jp nz, +
+      inc d
+    +:
     ld a,d
   ret
 

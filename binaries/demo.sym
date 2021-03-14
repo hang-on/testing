@@ -2,19 +2,19 @@
 ; wla symbolic information for "binaries\demo.sms".
 
 [labels]
-0000:00d8 clear_vram
-0000:00ec load_cram
-0000:00f9 load_vram
-0000:010c set_border_color
-0000:0115 setup_vram_write
-0000:011e score_three_of_a_kind
-0000:0126 return_zero
-0000:0129 return_sum
-0000:012d have_three_of_a_kind
-0000:0141 return_false
-0000:0145 return_true
-0000:014b count_dice
-0000:015a sum_of_dice
+0000:0148 clear_vram
+0000:015c load_cram
+0000:0169 load_vram
+0000:017c set_border_color
+0000:0185 setup_vram_write
+0000:00e8 score_three_of_a_kind
+0000:00f0 return_zero
+0000:00f3 return_sum
+0000:00f7 have_three_of_a_kind
+0000:010b return_false
+0000:010e return_true
+0000:0113 count_dice
+0000:013f sum_of_dice
 0000:0000 boot
 0000:0024 initial_memory_control_register_values
 0000:0069 init
@@ -23,6 +23,7 @@
 0000:007e dice_11134
 0000:0083 dice_12345
 0000:0088 dice_53552
-0000:00c2 exit_with_failure
-0000:00cb exit_with_succes
-0000:00d4 main_loop
+0000:008d dice_11666
+0000:00d2 exit_with_failure
+0000:00db exit_with_succes
+0000:00e4 main_loop

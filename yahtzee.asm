@@ -16,44 +16,17 @@
   have_three_of_a_kind:
     push hl
     ld c,1
-    call count_dice
-    cp 3
-    jp z, return_true
-
-    pop hl
-    push hl
-    ld c,2
-    call count_dice
-    cp 3
-    jp z, return_true
-
-    pop hl
-    push hl
-    ld c,3
-    call count_dice
-    cp 3
-    jp z, return_true
-
-    pop hl
-    push hl
-    ld c,4
-    call count_dice
-    cp 3
-    jp z, return_true
-
-    pop hl
-    push hl
-    ld c,5
-    call count_dice
-    cp 3
-    jp z, return_true
-
-    pop hl
-    push hl
-    ld c,6
-    call count_dice
-    cp 3
-    jp z, return_true
+    ld b,5
+    -:
+      push bc
+        call count_dice
+        cp 3
+        jp z, return_true
+      pop bc
+      inc c
+      pop hl
+      push hl
+    djnz -
 
     return_false:
       pop hl
@@ -61,6 +34,7 @@
     ret
 
     return_true:
+      pop bc
       pop hl
       ld a,TRUE
     ret

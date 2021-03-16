@@ -66,7 +66,7 @@
 
 .section "main" free
   init:
-  ; Run this function once (on game load/reset).
+  ; Run this function once.
     ld a,16
     ld b,3
     ld hl,yellow_red_green
@@ -79,6 +79,17 @@
       .equ GREEN 2
     +:
     ; -------------------------------------------------------------------------
+    ; The tests:
+    call test_three_of_a_kind
+    ; ...
+    jp exit_with_succes
+    ; -------------------------------------------------------------------------
+    ei
+    halt
+    halt
+  jp main_loop
+
+  test_three_of_a_kind:
     EVALUATE_DICE score_three_of_a_kind 1 1 1 2 2
     ASSERT_A_EQUALS 7
 
@@ -96,14 +107,7 @@
 
     EVALUATE_DICE score_three_of_a_kind 6 1 6 6 6
     ASSERT_A_EQUALS 25
-
-
-    jp exit_with_succes
-    ; -------------------------------------------------------------------------
-    ei
-    halt
-    halt
-  jp main_loop
+  ret
 
   exit_with_failure:
     ld a,RED

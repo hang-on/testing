@@ -1,6 +1,15 @@
 .equ TRUE 1
 .equ FALSE 0
 
+.macro EVALUATE_DICE
+  jp +
+    dice\@:
+      .db \2 \3 \4 \5 \6
+  +:
+  ld hl,dice\@
+  call \1
+.endm
+
 .section "Yahtzee library" free
   score_three_of_a_kind:
     call have_at_least_three_of_a_kind

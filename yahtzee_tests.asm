@@ -62,48 +62,29 @@
       .equ YELLOW 0
       .equ RED 1
       .equ GREEN 2
-    
-      dice_11122:
-        .db 1, 1, 1, 2, 2
-      dice_11134:
-        .db 1, 1, 1, 3, 4
-      dice_12345:
-        .db 1, 2, 3, 4, 5
-      dice_53552:
-        .db 5, 3, 5, 5, 2
-      dice_11666:
-        .db 1, 1, 6, 6, 6
-      dice_61666:
-        .db 6, 1, 6, 6, 6
     +:
     ; -------------------------------------------------------------------------
-    ld hl,dice_11122
-    call score_three_of_a_kind
+    EVALUATE_DICE score_three_of_a_kind 1 1 1 2 2
     cp 7
     jp nz,exit_with_failure
 
-    ld hl,dice_11134
-    call score_three_of_a_kind
+    EVALUATE_DICE score_three_of_a_kind 1 1 1 3 4
     cp 10
     jp nz,exit_with_failure
 
-    ld hl,dice_12345
-    call score_three_of_a_kind
+    EVALUATE_DICE score_three_of_a_kind 1 2 3 4 5
     cp 0
     jp nz,exit_with_failure
 
-    ld hl,dice_53552
-    call score_three_of_a_kind
+    EVALUATE_DICE score_three_of_a_kind 5 3 5 5 2
     cp 20
     jp nz,exit_with_failure
 
-    ld hl,dice_11666
-    call score_three_of_a_kind
+    EVALUATE_DICE score_three_of_a_kind 1 1 6 6 6
     cp 20
     jp nz,exit_with_failure
 
-    ld hl,dice_61666
-    call score_three_of_a_kind
+    EVALUATE_DICE score_three_of_a_kind 6 1 6 6 6
     cp 25
     jp nz,exit_with_failure
 

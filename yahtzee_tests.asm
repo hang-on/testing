@@ -1,3 +1,18 @@
+.macro ASSERT_A_EQUALS
+  cp \1
+  jp nz,exit_with_failure
+  nop
+.endm
+
+.macro EVALUATE_DICE
+  jp +
+    dice\@:
+      .db \2 \3 \4 \5 \6
+  +:
+  ld hl,dice\@
+  call \1
+.endm
+
 .include "stdlib.asm"
 .include "yahtzee.asm"
 .memorymap
@@ -65,28 +80,22 @@
     +:
     ; -------------------------------------------------------------------------
     EVALUATE_DICE score_three_of_a_kind 1 1 1 2 2
-    cp 7
-    jp nz,exit_with_failure
+    ASSERT_A_EQUALS 7
 
     EVALUATE_DICE score_three_of_a_kind 1 1 1 3 4
-    cp 10
-    jp nz,exit_with_failure
+    ASSERT_A_EQUALS 10
 
     EVALUATE_DICE score_three_of_a_kind 1 2 3 4 5
-    cp 0
-    jp nz,exit_with_failure
+    ASSERT_A_EQUALS 0
 
     EVALUATE_DICE score_three_of_a_kind 5 3 5 5 2
-    cp 20
-    jp nz,exit_with_failure
+    ASSERT_A_EQUALS 20
 
     EVALUATE_DICE score_three_of_a_kind 1 1 6 6 6
-    cp 20
-    jp nz,exit_with_failure
+    ASSERT_A_EQUALS 20
 
     EVALUATE_DICE score_three_of_a_kind 6 1 6 6 6
-    cp 25
-    jp nz,exit_with_failure
+    ASSERT_A_EQUALS 25
 
 
     jp exit_with_succes
